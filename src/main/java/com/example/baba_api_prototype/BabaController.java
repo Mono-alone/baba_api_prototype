@@ -32,6 +32,9 @@ public class BabaController {
     public Baba vote(@PathVariable("babaId") UUID babaId, @RequestBody BabaVote babaVote) {
         Baba baba = babaRepo.findById(babaId).orElseThrow();
         baba.addVote(babaVote);
+        if (baba.getVotes().size() > 3) {
+            baba.setType(BabaType.BABA_BOMBA);
+        }
         return babaRepo.save(baba);
     }
 
