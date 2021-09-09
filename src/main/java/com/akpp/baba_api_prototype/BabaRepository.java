@@ -1,4 +1,4 @@
-package com.example.baba_api_prototype;
+package com.akpp.baba_api_prototype;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

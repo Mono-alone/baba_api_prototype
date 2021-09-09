@@ -1,8 +1,10 @@
-package com.example.baba_api_prototype;
+package com.akpp.baba_api_prototype;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 
 @Entity
@@ -12,7 +14,12 @@ public class BabaVote {
     @GeneratedValue
     public long id;
 
+    @Min(value = 0, message = "Looks can be rated from 0 to 10")
+    @Max(value = 10, message = "Looks can be rated from 0 to 10")
     private int looks;
+
+    @Min(value = 0, message = "Personalty can be rated from 0 to 10")
+    @Max(value = 10, message = "Personality can be rated from 0 to 10")
     private int personality;
 
     public BabaVote() {

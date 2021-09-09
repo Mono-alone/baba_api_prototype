@@ -1,4 +1,4 @@
-package com.example.baba_api_prototype;
+package com.akpp.baba_api_prototype;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

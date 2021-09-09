@@ -1,9 +1,11 @@
-package com.example.baba_api_prototype;
+package com.akpp.baba_api_prototype;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,14 +27,10 @@ public class Baba {
     @NotBlank(message = "Last name cannot be empty")
     private String lastName;
 
-    private String pictureUrl;
+    @Positive(message = "Age cannot be negative")
+    private int age;
 
-//    @Min(value = 1L, message = "Looks cannot be ranked lower than 1")
-//    @Max(value = 10L, message = "Looks cannot be ranked higher than 10")
-//    private double looks;
-//    @Min(value = 1L, message = "Personality cannot be ranked lower than 1")
-//    @Max(value = 10L, message = "Personality cannot be ranked higher than 10")
-//    private double personality;
+    private String pictureUrl;
 
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
@@ -45,9 +43,10 @@ public class Baba {
     public Baba() {
     }
 
-    public Baba(String firstName, String lastName, String pictureUrl, BabaType type) {
+    public Baba(String firstName, String lastName, int age, String pictureUrl, BabaType type) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.pictureUrl = pictureUrl;
         this.type = type;
     }
@@ -74,6 +73,14 @@ public class Baba {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getPictureUrl() {
@@ -124,6 +131,7 @@ public class Baba {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", age='" + age + '\'' +
                 ", picture=" + pictureUrl +
                 ", type=" + type +
                 '}';
