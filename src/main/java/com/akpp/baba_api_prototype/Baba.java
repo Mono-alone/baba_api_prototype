@@ -1,6 +1,7 @@
 package com.akpp.baba_api_prototype;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -30,6 +31,7 @@ public class Baba {
     @Positive(message = "Age cannot be negative")
     private int age;
 
+    @URL
     private String pictureUrl;
 
     @OneToMany(
